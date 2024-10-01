@@ -37,16 +37,16 @@ Java es el lenguaje de programación principal de este proyecto. Proporciona un 
 Swing es una biblioteca de Java que permite la creación de interfaces gráficas de usuario (GUI) con componentes predefinidos como botones, áreas de texto y paneles. En este proyecto, se usa para diseñar toda la estructura visual del juego.
   JFrame: La ventana principal que contiene todos los elementos del juego.
   JPanel: Usado para agrupar las áreas como la pantalla de selección de clase, nombre y área de juego.
-  JTextArea y JLabel: Para mostrar el título del juego, descripciones y mensajes interactivos.
-  
-JButton: Implementado para los botones de interacción, como "Start the Adventure" y "Select Class".
-3. Event Listeners 🖱️
-Los MouseListener y KeyListener de Java son fundamentales para interactuar con el juego, capturando eventos de teclado y ratón para activar comportamientos como cambiar de panel, seleccionar un personaje o iniciar el juego.
+  JTextArea y JLabel: Para mostrar el título del juego, descripciones y mensajes interactivos. 
+  JButton: Implementado para los botones de interacción, como "Start the Adventure" y "Select Class".
+
+4. Event Listeners 🖱️
+  Los MouseListener y KeyListener de Java son fundamentales para interactuar con el juego, capturando eventos de teclado y ratón para activar comportamientos como cambiar de panel, seleccionar un personaje o iniciar el juego.
   ButtonMouseListenerStart: Detecta cuando se hace clic en el botón de inicio para cambiar de la pantalla principal a la de selección de personaje.
   ButtonMouseListenerSelectedClass: Maneja la selección de la clase del personaje y la cambia según el clic en la imagen.
   ButtonMouseListenerName: Se utiliza para almacenar el nombre del personaje que el usuario ingresa y avanza a la siguiente pantalla.
   
-4. Gestión de Imágenes y Recursos 🖼️
+5. Gestión de Imágenes y Recursos 🖼️
 El juego utiliza una variedad de imágenes para representar personajes, fondos y elementos del mapa. Se utiliza ImageIcon y técnicas de escalado (Image.SCALE_SMOOTH) para ajustar las imágenes a los tamaños específicos.
   Imágenes de Fondo: Cada pantalla (inicio, selección de clase y área de juego) tiene un fondo único.
   Sprites de Personajes: Cada personaje (Mago, Sacerdote, Guerrero) tiene su propio sprite que se utiliza para representarlo visualmente en la interfaz.
