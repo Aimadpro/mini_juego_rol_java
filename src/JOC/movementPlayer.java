@@ -147,7 +147,6 @@ public class movementPlayer extends KeyAdapter {
             createPortal();
 
             if (player.getBounds().intersects(portal.getBounds())){
-                usuario.guardarDadesDb(playerCharacter.getLives(), playerCharacter.getGold());
                 JOptionPane optionPane = new JOptionPane("¡Has ganado el juego!", JOptionPane.INFORMATION_MESSAGE);
                 JDialog dialog = optionPane.createDialog("Victoria");
                 dialog.setModal(true);

@@ -16,32 +16,51 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+/**
+ * Clase que extiende MouseAdapter para gestionar las interacciones del jugador al seleccionar una clase de personaje
+ * y realizar las acciones correspondientes en la interfaz del juego.
+ */
 public class ButtonMouseListenerSelectedClass extends MouseAdapter {
-    private JPanel panelActual;
-    private JPanel siguientePanel;
-    private JFrame frame;
-    private Character characterSelected;
-    private String eleccion;
-     private ArrayList<Rectangle> keyStates;
-     private JLabel player;
-     private JLabel object;
-     private JPanel inventoryPanel;
-     JLabel counterLabel;
-     private ArrayList<JLabel>livesArray;
-     private JLabel objetShowInventory;
-     private Usuario usuario;
 
+    private JPanel panelActual; // El panel actual donde está interactuando el jugador.
+    private JPanel siguientePanel; // El siguiente panel al que se transicionará tras la selección.
+    private Character characterSelected; // Personaje seleccionado por el jugador.
+    private String eleccion; // Clase seleccionada por el jugador (Warrior, Wizard, Priest).
+    private ArrayList<Rectangle> keyStates; // Estados clave para gestionar el movimiento del jugador.
+    private JLabel player; // Representación visual del jugador.
+    private JLabel object; // Objeto del inventario del jugador.
+    private JPanel inventoryPanel; // Panel donde se visualiza el inventario del jugador.
+    private JLabel counterLabel; // Etiqueta para mostrar el contador de oro u otro recurso.
+    private ArrayList<JLabel> livesArray; // Lista de etiquetas que representan las vidas del jugador.
+    private JLabel objetShowInventory; // Etiqueta que muestra el objeto en el inventario.
+    private Usuario usuario; // Información del usuario del juego.
 
-    public ButtonMouseListenerSelectedClass(Character decisionJugador, String eleccion, JPanel panelActual, JPanel siguientePanel, JFrame frame,ArrayList<Rectangle> keyStates,Usuario usuario) {
+    /**
+     * Constructor para la clase ButtonMouseListenerSelectedClass.
+     *
+     * @param decisionJugador  Personaje seleccionado por el jugador.
+     * @param eleccion         La clase de personaje seleccionada ("wizard", "warrior", "priest").
+     * @param panelActual      El panel actual del juego donde está interactuando el jugador.
+     * @param siguientePanel   El panel al que se transiciona después de la selección.
+     * @param frame            El marco de la ventana del juego.
+     * @param keyStates        Lista de estados de teclas que se utilizan para el movimiento del personaje.
+     * @param usuario          El usuario que está jugando.
+     */
+    public ButtonMouseListenerSelectedClass(Character decisionJugador, String eleccion, JPanel panelActual, JPanel siguientePanel, JFrame frame, ArrayList<Rectangle> keyStates, Usuario usuario) {
         this.panelActual = panelActual;
         this.siguientePanel = siguientePanel;
-        this.frame = frame;
         this.characterSelected = decisionJugador;
         this.eleccion = eleccion;
         this.keyStates = keyStates;
         this.usuario = usuario;
     }
 
+    /**
+     * Método que se ejecuta cuando el usuario hace clic en la clase de personaje.
+     * Realiza la transición al siguiente panel y configura el inventario, objeto y jugador seleccionado.
+     *
+     * @param e Evento de clic del ratón.
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         switch (eleccion.toLowerCase()) {
@@ -58,7 +77,6 @@ public class ButtonMouseListenerSelectedClass extends MouseAdapter {
                 throw new IllegalArgumentException("Elección de clase no válida: " + eleccion);
         }
 
-
         panelActual.removeAll();
         panelActual.add(siguientePanel);
         panelActual.revalidate();
@@ -69,12 +87,13 @@ public class ButtonMouseListenerSelectedClass extends MouseAdapter {
         createObjects();
         inventoryPanel();
         createPlayer();
-
-
-
-
     }
 
+    /**
+     * Método que aumenta el tamaño de los iconos cuando el ratón entra en un área interactuable.
+     *
+     * @param e Evento del ratón.
+     */
     @Override
     public void mouseEntered(MouseEvent e) {
         if (e.getSource() instanceof JLabel) {
@@ -85,6 +104,11 @@ public class ButtonMouseListenerSelectedClass extends MouseAdapter {
         }
     }
 
+    /**
+     * Método que reduce el tamaño de los iconos cuando el ratón sale del área interactuable.
+     *
+     * @param e Evento del ratón.
+     */
     @Override
     public void mouseExited(MouseEvent e) {
         if (e.getSource() instanceof JLabel) {
@@ -95,6 +119,9 @@ public class ButtonMouseListenerSelectedClass extends MouseAdapter {
         }
     }
 
+    /**
+     * Crea la representación gráfica del jugador en el panel del juego.
+     */
     private void createPlayer() {
         player = new JLabel();
         player.setSize(32, 32);
@@ -105,46 +132,59 @@ public class ButtonMouseListenerSelectedClass extends MouseAdapter {
 
         siguientePanel.add(player);
         siguientePanel.setComponentZOrder(player, 0);
-        movementPlayer listener = new movementPlayer(player,characterSelected,keyStates,siguientePanel,object,inventoryPanel,counterLabel,livesArray,objetShowInventory,usuario);
+        movementPlayer listener = new movementPlayer(player, characterSelected, keyStates, siguientePanel, object, inventoryPanel, counterLabel, livesArray, objetShowInventory, usuario);
         siguientePanel.addKeyListener(listener);
     }
-    private void createObjects(){
-        Point positionObect = new Point(300,850);
-        Rectangle sizeObject = new Rectangle(32,32);
-        Rectangle sizeObjectInventory = new Rectangle(76,76);
-        Point PositionObjectInventory = new Point(900,40);
-        if (characterSelected instanceof Warrior){
-            objetShowInventory = createObjectLabels("src/images/dungeon/sword.png",PositionObjectInventory,sizeObjectInventory,inventoryPanel,0);
-            object=  createObjectLabels("src/images/dungeon/sword.png",positionObect,sizeObject,siguientePanel,1);
-        }
-        else if (characterSelected instanceof Wizard){
-            objetShowInventory = createObjectLabels("src/images/dungeon/potion.png",PositionObjectInventory,sizeObjectInventory,inventoryPanel,0);
-            object = createObjectLabels("src/images/dungeon/potion.png",positionObect,sizeObject,siguientePanel,1);
-        }
-        else if (characterSelected instanceof Priest){
-            objetShowInventory = createObjectLabels("src/images/dungeon/mitra.png",PositionObjectInventory,sizeObjectInventory,inventoryPanel,0);
-            object = createObjectLabels("src/images/dungeon/mitra.png",positionObect,sizeObject,siguientePanel,1);
-        }
 
+    /**
+     * Crea los objetos del inventario basados en la clase del personaje.
+     */
+    private void createObjects() {
+        Point positionObect = new Point(300, 850);
+        Rectangle sizeObject = new Rectangle(32, 32);
+        Rectangle sizeObjectInventory = new Rectangle(76, 76);
+        Point PositionObjectInventory = new Point(900, 40);
 
+        if (characterSelected instanceof Warrior) {
+            objetShowInventory = createObjectLabels("src/images/dungeon/sword.png", PositionObjectInventory, sizeObjectInventory, inventoryPanel, 0);
+            object = createObjectLabels("src/images/dungeon/sword.png", positionObect, sizeObject, siguientePanel, 1);
+        } else if (characterSelected instanceof Wizard) {
+            objetShowInventory = createObjectLabels("src/images/dungeon/potion.png", PositionObjectInventory, sizeObjectInventory, inventoryPanel, 0);
+            object = createObjectLabels("src/images/dungeon/potion.png", positionObect, sizeObject, siguientePanel, 1);
+        } else if (characterSelected instanceof Priest) {
+            objetShowInventory = createObjectLabels("src/images/dungeon/mitra.png", PositionObjectInventory, sizeObjectInventory, inventoryPanel, 0);
+            object = createObjectLabels("src/images/dungeon/mitra.png", positionObect, sizeObject, siguientePanel, 1);
+        }
     }
-    public JLabel createObjectLabels(String path, Point position,Rectangle size,JPanel panel, int condition){
+
+    /**
+     * Crea etiquetas gráficas para los objetos en el inventario o el mundo del juego.
+     *
+     * @param path       Ruta de la imagen del objeto.
+     * @param position   Posición del objeto.
+     * @param size       Tamaño del objeto.
+     * @param panel      Panel donde se añadirá el objeto.
+     * @param condition  Condición para añadir el objeto en el panel.
+     * @return Etiqueta JLabel que representa el objeto.
+     */
+    public JLabel createObjectLabels(String path, Point position, Rectangle size, JPanel panel, int condition) {
         JLabel object = new JLabel();
         object.setSize(size.getSize());
         ImageIcon coinImage = new ImageIcon(path);
         Image coinImageScaled = coinImage.getImage().getScaledInstance(object.getWidth(), object.getHeight(), Image.SCALE_SMOOTH);
         object.setIcon(new ImageIcon(coinImageScaled));
-            object.setLocation(position);
-
+        object.setLocation(position);
         object.setVisible(true);
-        if (condition==1) {
+        if (condition == 1) {
             panel.add(object);
             panel.setComponentZOrder(object, 0);
         }
-
         return object;
-
     }
+
+    /**
+     * Configura el panel del inventario para mostrar objetos y recursos del jugador.
+     */
     private void inventoryPanel() {
         inventoryPanel = createInventoryPanel();
         siguientePanel.add(inventoryPanel);
@@ -158,6 +198,11 @@ public class ButtonMouseListenerSelectedClass extends MouseAdapter {
         inventoryPanel.repaint();
     }
 
+    /**
+     * Crea el panel que contendrá el inventario del jugador.
+     *
+     * @return Panel configurado para mostrar el inventario.
+     */
     private JPanel createInventoryPanel() {
         JPanel panel = new JPanel();
         panel.setLocation(200, 0);
@@ -171,16 +216,26 @@ public class ButtonMouseListenerSelectedClass extends MouseAdapter {
         return panel;
     }
 
+    /**
+     * Añade una imagen al panel de inventario.
+     *
+     * @param panel Panel donde se añadirá la imagen.
+     */
     private void addImageLabel(JPanel panel) {
         JLabel imageLabel = new JLabel();
         imageLabel.setSize(76, 76);
-        ImageIcon imageIcon = new ImageIcon("src/images/dungeon/dollar.png"); // Reemplaza con la ruta de tu imagen
+        ImageIcon imageIcon = new ImageIcon("src/images/dungeon/dollar.png");
         Image imageScaled = imageIcon.getImage().getScaledInstance(imageLabel.getWidth(), imageLabel.getHeight(), Image.SCALE_SMOOTH);
         imageLabel.setIcon(new ImageIcon(imageScaled));
         panel.add(imageLabel);
         panel.setComponentZOrder(imageLabel, 0);
     }
 
+    /**
+     * Añade un contador de recursos (como oro) al panel de inventario.
+     *
+     * @param panel Panel donde se añadirá el contador.
+     */
     private void addCounterLabel(JPanel panel) {
         counterLabel = new JLabel("0");
         counterLabel.setFont(new Font("Arial", Font.BOLD, 24));
@@ -189,6 +244,12 @@ public class ButtonMouseListenerSelectedClass extends MouseAdapter {
         panel.setComponentZOrder(counterLabel, 0);
     }
 
+    /**
+     * Añade los iconos que representan las vidas del jugador al panel de inventario.
+     *
+     * @param panel      Panel donde se añadirán las vidas.
+     * @param livesCount Número de vidas del jugador.
+     */
     private void addLivesIcons(JPanel panel, int livesCount) {
         livesArray = new ArrayList<>();
         for (int i = 0; i < livesCount; i++) {
@@ -203,8 +264,4 @@ public class ButtonMouseListenerSelectedClass extends MouseAdapter {
             inventoryPanel.setComponentZOrder(lives, 0);
         }
     }
-
-
-
-
 }
