@@ -30,10 +30,9 @@ Reúne las 10 monedas y desbloquearás el portal de salida!
 
 👨‍💻 Tecnologías Utilizadas
 1. Java (JDK 8 o superior) ☕
-Java es el lenguaje de programación principal de este proyecto. Proporciona un entorno robusto y multiplataforma para desarrollar aplicaciones interactivas y orientadas a objetos. Se utiliza tanto para la lógica del juego como para la gestión de eventos y la interfaz gráfica.
-
-POO (Programación Orientada a Objetos): Uso intensivo de clases para representar las entidades del juego, como personajes, áreas de juego, y controladores.
-Colecciones: Como ArrayList para manejar elementos dinámicos como las posiciones de las paredes o personajes seleccionados.
+Java es el lenguaje de programación principal de este proyecto. Proporciona un entorno robusto y multiplataforma para desarrollar aplicaciones interactivas y orientadas a objetos. Se utiliza tanto para la lógica del juego como para la gestión de eventos y la   interfaz gráfica.
+  POO (Programación Orientada a Objetos): Uso intensivo de clases para representar las entidades del juego, como personajes, áreas de juego, y controladores.
+  Colecciones: Como ArrayList para manejar elementos dinámicos como las posiciones de las paredes o personajes seleccionados.
 2. Swing para la Interfaz Gráfica 🎨
 Swing es una biblioteca de Java que permite la creación de interfaces gráficas de usuario (GUI) con componentes predefinidos como botones, áreas de texto y paneles. En este proyecto, se usa para diseñar toda la estructura visual del juego.
   JFrame: La ventana principal que contiene todos los elementos del juego.
