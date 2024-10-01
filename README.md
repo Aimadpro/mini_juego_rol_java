@@ -36,35 +36,35 @@ POO (Programación Orientada a Objetos): Uso intensivo de clases para representa
 Colecciones: Como ArrayList para manejar elementos dinámicos como las posiciones de las paredes o personajes seleccionados.
 2. Swing para la Interfaz Gráfica 🎨
 Swing es una biblioteca de Java que permite la creación de interfaces gráficas de usuario (GUI) con componentes predefinidos como botones, áreas de texto y paneles. En este proyecto, se usa para diseñar toda la estructura visual del juego.
-
-JFrame: La ventana principal que contiene todos los elementos del juego.
-JPanel: Usado para agrupar las áreas como la pantalla de selección de clase, nombre y área de juego.
-JTextArea y JLabel: Para mostrar el título del juego, descripciones y mensajes interactivos.
+  JFrame: La ventana principal que contiene todos los elementos del juego.
+  JPanel: Usado para agrupar las áreas como la pantalla de selección de clase, nombre y área de juego.
+  JTextArea y JLabel: Para mostrar el título del juego, descripciones y mensajes interactivos.
+  
 JButton: Implementado para los botones de interacción, como "Start the Adventure" y "Select Class".
 3. Event Listeners 🖱️
 Los MouseListener y KeyListener de Java son fundamentales para interactuar con el juego, capturando eventos de teclado y ratón para activar comportamientos como cambiar de panel, seleccionar un personaje o iniciar el juego.
-
-ButtonMouseListenerStart: Detecta cuando se hace clic en el botón de inicio para cambiar de la pantalla principal a la de selección de personaje.
-ButtonMouseListenerSelectedClass: Maneja la selección de la clase del personaje y la cambia según el clic en la imagen.
-ButtonMouseListenerName: Se utiliza para almacenar el nombre del personaje que el usuario ingresa y avanza a la siguiente pantalla.
+  ButtonMouseListenerStart: Detecta cuando se hace clic en el botón de inicio para cambiar de la pantalla principal a la de selección de personaje.
+  ButtonMouseListenerSelectedClass: Maneja la selección de la clase del personaje y la cambia según el clic en la imagen.
+  ButtonMouseListenerName: Se utiliza para almacenar el nombre del personaje que el usuario ingresa y avanza a la siguiente pantalla.
+  
 4. Gestión de Imágenes y Recursos 🖼️
 El juego utiliza una variedad de imágenes para representar personajes, fondos y elementos del mapa. Se utiliza ImageIcon y técnicas de escalado (Image.SCALE_SMOOTH) para ajustar las imágenes a los tamaños específicos.
+  Imágenes de Fondo: Cada pantalla (inicio, selección de clase y área de juego) tiene un fondo único.
+  Sprites de Personajes: Cada personaje (Mago, Sacerdote, Guerrero) tiene su propio sprite que se utiliza para representarlo visualmente en la interfaz.
+  Títulos y Textos: Se crean utilizando JTextArea con fuentes personalizadas (Georgia, Impact, etc.) y colores ajustados para mejorar la legibilidad.
 
-Imágenes de Fondo: Cada pantalla (inicio, selección de clase y área de juego) tiene un fondo único.
-Sprites de Personajes: Cada personaje (Mago, Sacerdote, Guerrero) tiene su propio sprite que se utiliza para representarlo visualmente en la interfaz.
-Títulos y Textos: Se crean utilizando JTextArea con fuentes personalizadas (Georgia, Impact, etc.) y colores ajustados para mejorar la legibilidad.
-5. Gestión de Paneles y Componentes 🗂️
+6. Gestión de Paneles y Componentes 🗂️
 El uso de JPanel permite organizar diferentes áreas de la aplicación de manera modular:
+  Panel Principal (panelMain): Contiene la pantalla inicial con el botón de "Start the Adventure".
+  Panel de Selección de Clase (selectClassArea): Permite elegir entre diferentes clases de personaje.
+  Panel de Selección de Nombre (selectName): Área donde el jugador ingresa su nombre.
+  Área de Juego (gameArea): Contiene el mapa generado dinámicamente con paredes y terrenos.
 
-Panel Principal (panelMain): Contiene la pantalla inicial con el botón de "Start the Adventure".
-Panel de Selección de Clase (selectClassArea): Permite elegir entre diferentes clases de personaje.
-Panel de Selección de Nombre (selectName): Área donde el jugador ingresa su nombre.
-Área de Juego (gameArea): Contiene el mapa generado dinámicamente con paredes y terrenos.
-6. Mapeo y Generación Dinámica de Terreno 🌍
+7. Mapeo y Generación Dinámica de Terreno 🌍
 La generación de paredes y terrenos en el área de juego se hace mediante la colocación de JLabel en posiciones calculadas dinámicamente.
+  Paredes: Se generan usando la función generateWallsY y generateWallsX, que coloca JLabel en un patrón específico basado en la estructura de los mapas RPG clásicos.
+  Terreno: El uso de baldosas (tiles) con generateTerrain permite llenar el área de juego con un patrón de suelo, creando una apariencia consistente.
 
-Paredes: Se generan usando la función generateWallsY y generateWallsX, que coloca JLabel en un patrón específico basado en la estructura de los mapas RPG clásicos.
-Terreno: El uso de baldosas (tiles) con generateTerrain permite llenar el área de juego con un patrón de suelo, creando una apariencia consistente.
 🧙 Clases de Personaje Disponibles
 🧙‍♂️ Mago: Especialista en hechizos y magia.
 ✝️ Sacerdote: Apoya con habilidades de curación y protección.
