@@ -84,4 +84,6 @@ Este proyecto está licenciado bajo la Licencia MIT - ver el archivo LICENSE par
 
 Para cualquier consulta o sugerencia, no dudes en ponerte en contacto:
 
-Nombre: Aimad Aisa Driouchi Correo: aaisad2324@politecnics.barcelona Mi Perfil de LinkedIn
+Nombre: Aimad Aisa Driouchi
+Correo: aaisad2324@politecnics.barcelona
+[Mi Perfil de LinkedIn](https://www.linkedin.com/in/aimad-aisa-driouchi-09ab6a2b4/)
