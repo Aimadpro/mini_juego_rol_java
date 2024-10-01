@@ -1,5 +1,5 @@
 🎮 RPG Adventure Game
-¡Bienvenido a RPG Adventure Game! 🎉 Este es un juego de rol basado en Java con una interfaz gráfica interactiva, donde los jugadores pueden elegir entre diferentes clases de personajes y explorar un mundo mágico lleno de aventuras. 🧙‍♂️⚔️🗺️
+¡Bienvenido a RPG Adventure Game! 🎉 Este es un juego de rol basado en Java con una interfaz gráfica interactiva, donde los jugadores pueden elegir entre 3 clases de personajes y jugar un minijuego programado con java swings. 🧙‍♂️⚔️🗺️
 
 🚀 Características
 🖼️ Interfaz Gráfica: Diseño de pantalla completo en 1920x1080 con fondos personalizados.
